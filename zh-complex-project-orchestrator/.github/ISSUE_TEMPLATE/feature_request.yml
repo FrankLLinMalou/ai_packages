@@ -1,0 +1,37 @@
+name: 功能建议
+description: 提议新的工作流行为或兼容性改进
+title: "[Feature] "
+labels:
+  - enhancement
+body:
+  - type: textarea
+    id: scenario
+    attributes:
+      label: 用户场景
+      description: 说明谁在什么复杂项目中遇到什么问题。
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: 当前行为与不足
+    validations:
+      required: true
+  - type: textarea
+    id: desired
+    attributes:
+      label: 可观察的期望行为
+    validations:
+      required: true
+  - type: textarea
+    id: cost
+    attributes:
+      label: 资源与兼容性影响
+      description: 是否增加上下文、子 agent、外部依赖、权限或交互轮次？
+    validations:
+      required: true
+  - type: textarea
+    id: regression
+    attributes:
+      label: 建议的回归用例
+      description: 给出能区分新旧行为的最小测试场景。

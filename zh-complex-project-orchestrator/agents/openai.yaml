@@ -1,0 +1,6 @@
+interface:
+  display_name: "中文复杂项目编排器"
+  short_description: "内部英文编排复杂长期项目，所有面向用户的沟通与交付均为中文"
+  default_prompt: "使用 $zh-complex-project-orchestrator 启动并管理这个复杂项目；内部使用英文，所有面向我的输出使用中文。"
+policy:
+  allow_implicit_invocation: false

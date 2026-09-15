@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+dist/
+*.zip
+*.log
+.codex/zh-complex-project-state.md

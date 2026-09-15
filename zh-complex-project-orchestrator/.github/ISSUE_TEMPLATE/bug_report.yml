@@ -1,0 +1,49 @@
+name: 行为问题
+description: 报告可复现的 Skill 行为、触发或门禁问题
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: 请删除密钥、私人对话和敏感项目数据，只提供最小复现。
+  - type: input
+    id: host
+    attributes:
+      label: 宿主与版本
+      description: 例如 Codex CLI、Codex 桌面端或其他 Agent Skills 客户端。
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Skill 版本
+      description: 查看 VERSION 文件。
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: 最小复现
+      description: 包含调用方式、输入类型和相关状态；请使用脱敏内容。
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望行为
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际行为
+    validations:
+      required: true
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: 安全确认
+      options:
+        - label: 本报告不包含密钥、个人数据或可利用漏洞细节。
+          required: true
