@@ -1,4 +1,12 @@
-MIT License
+# Project License
+
+Except for the embedded third-party snapshots identified in
+`THIRD_PARTY_NOTICES.md`, the project-authored contents of this repository are
+licensed under the MIT License below. Embedded upstream files remain under
+their stated licenses. License copies are retained both in each unmodified
+snapshot and in `LICENSES/` for convenient redistribution.
+
+## MIT License
 
 Copyright (c) 2026 The zh-complex-project-orchestrator contributors
 

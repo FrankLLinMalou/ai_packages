@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "snapshots": [
+    {
+      "name": "mattpocock-skills",
+      "source": "https://github.com/mattpocock/skills",
+      "revision": "3cca18b368ae95cdbdebbff572ccafa662551015",
+      "scope": "complete working tree except .git",
+      "normalization": "AGENTS.md symlink materialized as a regular copy of CLAUDE.md for portable ZIP extraction",
+      "license": "MIT",
+      "manifest": "modules/mattpocock-skills/MANIFEST.sha256"
+    },
+    {
+      "name": "ponytail",
+      "source": "https://github.com/DietrichGebert/ponytail",
+      "revision": "e3ba2aa6f1e6f0bc4d69eb09c9f0d0a93af56156",
+      "scope": "complete working tree except .git",
+      "normalization": "none",
+      "license": "MIT",
+      "manifest": "modules/ponytail/MANIFEST.sha256"
+    },
+    {
+      "name": "nature-skills",
+      "source": "https://github.com/Yuan1z0825/nature-skills",
+      "revision": "9ea7330a17813a15421fe843778a776c258b9001",
+      "scope": "complete working tree except .git and unlicensed figures4papers payloads; retain its notice",
+      "normalization": "none",
+      "license": "Apache-2.0 with embedded MIT components",
+      "manifest": "modules/nature-skills/MANIFEST.sha256"
+    }
+  ]
+}

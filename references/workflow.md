@@ -43,7 +43,9 @@ execution_mode: economy | fast
 tier: light | standard | heavy
 execution_agents: 0 | justified count
 max_parallelism: justified count
-special_skills: none | exact names
+embedded_modules: none | exact adapter names
+embedded_leaf_skills: none | exact upstream leaf paths
+external_extensions: none | exact runtimes, services, registrations, or updates
 high_cost_calls: none | bounded calls
 state_backend: none | local | persistent
 escalation_condition: observable trigger
@@ -53,7 +55,7 @@ stop_condition: observable trigger
 | Tier | Fit | Default |
 | --- | --- | --- |
 | Light | One deliverable or tightly coupled work | Coordinator only, plus required intake/audit agents |
-| Standard | Multiple stages within one manageable context | Serial coordinator; specialized skill if useful; no execution agent |
+| Standard | Multiple stages within one manageable context | Serial coordinator; selected embedded leaves if useful; no execution agent |
 | Heavy | Large corpus, multiple specialties, long builds, or independent workstreams under fast mode | A small dependency-based set of bounded execution agents |
 
 Do not invent precise token counts when the runtime cannot measure them. Prefer relative budgets, bounded calls, and explicit escalation/stop conditions. Do not create agents merely to play roles. Keep work serial when context-transfer cost exceeds parallel benefit.

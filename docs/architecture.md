@@ -55,9 +55,28 @@ Intake 与最终验收 agent 是工作流固定角色，不计入“执行 agent
 
 恢复时不能只相信状态摘要；应核对当前产物、版本和未决决策。状态完成、暂停、停用、过期或相互冲突时不得静默重新激活。新线程中的状态文件不能自行触发 Skill；用户必须先显式调用。
 
-## 第三方能力
+## 模块化上游能力
 
-Grill Me、Ponytail 和 Nature Skills 都是可选能力，不是运行依赖。本 Skill 只记录来源和路由原则，不捆绑其代码。安装需要当前用户明确授权，并继续受宿主审批机制约束。
+v3.0.0 内置三个固定提交的最大可再分发工作树：Matt Pocock Skills、
+Ponytail 和 Nature Skills。快照排除 `.git` 历史以及 Nature 明确未授权
+再分发的 `figures4papers` 载荷，并保留相关第三方声明。已收录文件内容
+保持不变，并
+由本项目自己的 `MODULE.md` 适配器负责中文界面、权限边界和按需路由。
+
+模块分成三层，防止“完整收录”等于“完整加载”：
+
+1. 根 `SKILL.md` 只决定是否需要某类能力；
+2. `modules/README.md` 和对应 `MODULE.md` 选择具体叶子 Skill；
+3. 只读取该叶子 `SKILL.md` 以及它直接引用的文件、脚本或资产。
+
+复合任务可以加载多个匹配模块，但必须记录准确叶子路径并避免重复
+发现。`modules/LOCK.json` 固定来源与提交；每个模块的
+`MANIFEST.sha256` 覆盖全部已收录文件，防止遗漏或静默修改。
+
+“文件已内置”不代表“运行时已激活”。Ponytail 的 hooks、MCP 和宿主
+插件仍需显式注册；Nature Skills 的 Python/R/npm 依赖、浏览器、凭据
+和外部服务仍需逐项检查。任何安装、运行、网络访问或外部写入仍受
+计划、权限和 smoke-test 门禁约束。
 
 ## 平台限制
 
@@ -68,4 +87,9 @@ Grill Me、Ponytail 和 Nature Skills 都是可选能力，不是运行依赖。
 
 ## 为什么使用渐进披露
 
-`SKILL.md` 只保留每次激活都必须知道的门禁。完整资源预算和状态契约位于 `references/workflow.md`，第三方规则位于 `references/external-skills.md`，维护测试位于 `references/test-cases.md`。这样普通运行不会加载所有维护资料。
+`SKILL.md` 只保留每次激活都必须知道的门禁和一级模块路由。完整资源
+预算和状态契约位于 `references/workflow.md`；模块适配器只负责选择
+叶子；大型上游工作树保持休眠，直到叶子文件显式引用它们。外部运行
+要求位于 `references/external-skills.md`，维护测试位于
+`references/test-cases.md`。因此包体积增加不会直接增加单次会话的
+上下文消耗。

@@ -1,30 +1,33 @@
-# External skill routing
+# External extensions and runtime requirements
 
-Third-party repositories can change. Inspect current source, requested permissions, hooks, scripts, and installation scope before use. Never execute repository scripts blindly.
+The package embeds pinned, maximally redistributable working-tree snapshots of
+all three upstream projects. Do not install a duplicate upstream skill for a
+capability already present under `modules/`.
 
-## Grill Me
+Bundled files and active runtime capability are different. External action may
+still be needed for:
 
-- Source: <https://github.com/mattpocock/skills/tree/main>
-- Use only when ambiguity, scope, acceptance, or a tradeoff can materially change the plan.
-- Prefer a model-invoked `grilling` capability when available. If the environment exposes only a user-invoked `grill-me`, ask the user to invoke it or ask equivalent high-information questions directly.
-- If missing, obtain explicit current-user installation authorization before using the host's skill installer for only the required capability. Do not block planning when installation is unavailable.
+- registering a Ponytail plugin, hook, command set, or MCP server with the host;
+- installing Python, R, npm, browser, font, document, or system dependencies;
+- authenticating to literature databases, issue trackers, publishers, APIs, or
+  other services;
+- obtaining lawful institutional or paid access;
+- moving to a newer upstream revision than the pinned snapshot;
+- publishing, deploying, sending, or writing to an external system.
 
-## Ponytail
+## Authorization and cost rules
 
-- Source: <https://github.com/DietrichGebert/ponytail>
-- Use for coding only when reuse, standard-library/native features, or a minimum sufficient implementation is likely to reduce code and context more than loading/installing the capability costs.
-- Never trade away security, error handling, accessibility, data-loss protection, or necessary verification.
-
-## Nature Skills
-
-- Source: <https://github.com/Yuan1z0825/nature-skills>
-- Use only the smallest matching subset for scientific writing, Nature-style expression, scientific figures, or a specialized research workflow.
-- Do not load the collection merely because a task mentions research.
-
-## Installation and cost rules
-
-1. Check whether the exact capability is already available.
-2. Starting this orchestrator authorizes a suggestion, not installation. Install only after the user explicitly requests it in the current instruction or confirms the source, scope, and persistence impact. Host approval is additional and never substitutes for user authorization.
-3. Prefer the host's controlled installer. Review `SKILL.md`, executable scripts, and hooks; reject obfuscated code, secret requests, or unjustified permissions.
-4. Pin or record the installed version/commit when practical. Recheck capability names and invocation policy rather than relying on stale examples.
-5. Stop after one clear installation failure. Fall back to built-in behavior or report the blocker; do not retry indefinitely.
+1. State which exact capability is unavailable from the embedded instructions
+   and files alone.
+2. Inspect the selected embedded script, manifest, hook, or adapter before
+   proposing execution or installation. Do not execute repository scripts
+   blindly.
+3. Put dependencies, permissions, persistence, network access, expected cost,
+   and outputs in the plan. Starting the orchestrator does not authorize them.
+4. Prefer an already available host capability over registering duplicate
+   plugins or installing redundant dependencies.
+5. For an upstream update, compare licenses and behavior, pin the new commit,
+   regenerate manifests, run all validations, and obtain approval for material
+   workflow changes.
+6. Stop after one clear installation or registration failure. Report the
+   blocker instead of retrying indefinitely.

@@ -1,9 +1,9 @@
 ---
 name: zh-complex-project-orchestrator
-description: 仅用于用户明确启动或再次调用本 Skill 管理中文复杂长期项目；以紧凑英文编排内部工作，先澄清和规划，再经确认执行、验证及独立验收，所有面向用户的输出使用中文。不要仅因任务复杂、使用中文或发现项目状态文件而自动启动，也不要用于一次性简单问答。
-license: MIT. See LICENSE.md
+description: 仅用于用户明确启动或再次调用本 Skill 管理中文复杂长期项目；以紧凑英文编排内部工作，按需使用内置规划、工程与科研模块，先澄清和规划，再经确认执行、验证及独立验收，所有面向用户的输出使用中文。不要仅因任务复杂、使用中文或发现项目状态文件而自动启动，也不要用于一次性简单问答。
+license: MIT for original content; embedded upstream snapshots retain MIT or Apache-2.0. See LICENSE.md and THIRD_PARTY_NOTICES.md
 metadata:
-  version: "2.1.0"
+  version: "3.0.0"
   language: "zh-CN"
   internal-language: "en"
 ---
@@ -28,7 +28,7 @@ Complete long-running projects while controlling context, agents, tool calls, an
 - The coordinator necessarily receives the original message before any skill can run. It must not start solving a substantive request until the intake compiler completes.
 - Authorization for a plan or one phase never authorizes unrelated publishing, deployment, messaging, spending, production changes, or persistent third-party installation.
 
-Read [workflow.md](references/workflow.md) for gates, resource budgets, persistence, and acceptance. Read [external-skills.md](references/external-skills.md) only when an external skill may be useful. Read [test-cases.md](references/test-cases.md) only when validating or modifying this skill.
+Read [workflow.md](references/workflow.md) for gates, resource budgets, persistence, and acceptance. When an embedded capability applies, first read the compact [module dispatcher](modules/README.md), then the matching adapter: [Matt Pocock Skills](modules/mattpocock-skills/MODULE.md) for clarification, planning, engineering workflow, handoff, or teaching; [Ponytail](modules/ponytail/MODULE.md) for minimum-code implementation or complexity review; and [Nature Skills](modules/nature-skills/MODULE.md) for scientific work. Load only the selected upstream leaf skill and its direct dependencies. Read [external-skills.md](references/external-skills.md) only when a requested capability still needs host integration, an unavailable runtime, an external service, or a newer upstream revision. Read [test-cases.md](references/test-cases.md) only when validating or modifying this skill.
 
 ## Adaptive intake compiler
 
@@ -66,8 +66,8 @@ The original user message remains authoritative. The coordinator must compare th
 
 ## Required gates
 
-1. **Plan first.** After intake, enter Plan mode. If unavailable, remain read-only except for an explicitly approved planning/state artifact. Inspect what can be safely learned before asking questions. Use Grill Me only for ambiguities that materially change the plan. Present the plan, acceptance criteria, resource budget, and proposed smoke test in Chinese. Never invent a command, path, fixture, environment, or capability that has not been inspected; when details are unknown, describe only the test objective and defer the exact procedure. Obtain explicit approval before implementation.
-2. **Execute to the approved scope.** Default to `execution_mode: economy` and token-efficient serial work. Use `execution_mode: fast` only when the user prioritizes wall-clock time. Add execution subagents only for a heavy workload, or under fast mode when independent workstreams exist. Give each subagent a bounded English brief and minimal context. Use external skills only when their expected value exceeds installation and context cost.
+1. **Plan first.** After intake, enter Plan mode. If unavailable, remain read-only except for an explicitly approved planning/state artifact. Inspect what can be safely learned before asking questions. For ambiguities that materially change the plan, or an explicit grill request, route through the embedded Matt Pocock adapter and load only the relevant clarification leaf. Present the plan, acceptance criteria, resource budget, selected modules, and proposed smoke test in Chinese. Never invent a command, path, fixture, environment, or capability that has not been inspected; when details are unknown, describe only the test objective and defer the exact procedure. Obtain explicit approval before implementation.
+2. **Execute to the approved scope.** Default to `execution_mode: economy` and token-efficient serial work. Use `execution_mode: fast` only when the user prioritizes wall-clock time. Add execution subagents only for a heavy workload, or under fast mode when independent workstreams exist. Give each subagent a bounded English brief and minimal context. For coding, route to the embedded Ponytail leaf only after understanding the affected paths; combine it with an embedded Matt engineering leaf only when that distinct workflow is useful. For scientific work, route to the smallest matching set of embedded Nature leaves and load their direct references progressively. Do not install an upstream skill that is already embedded. External runtimes, dependencies, services, plugin registration, and upstream updates remain separately gated.
 3. **Review before testing.** Inspect the complete result for structural integrity, requirement coverage, common-sense errors, inconsistent assumptions, and obvious regressions.
 4. **Require smoke authorization.** Run the smallest useful smoke test only after explicit permission. The user may pre-authorize the exact non-destructive test while approving the plan; pre-authorization is never valid for irreversible or external side effects and remains valid only if the test, risk, environment, and cost do not materially change.
 5. **Independently accept.** After review and any authorized smoke test, spawn a fresh read-only acceptance subagent that did not translate or implement the work. Give it the original requirements, approved criteria, source-document pointers, and final artifact pointers—not the implementer's conclusions or duplicated corpora.

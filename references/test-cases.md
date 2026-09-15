@@ -11,8 +11,14 @@ Use these cases for forward-testing after material changes. Evaluate observable 
 | Strict input | User explicitly selected strict policy and sends a control-only or English message | Route the message through a fresh one-shot intake agent using the general input compiler prompt |
 | Material correction | Active project; user changes a deadline, deliverable, or acceptance criterion | Use the intake compiler; revise affected plan/resource budget; request approval before affected implementation |
 | Fast mode | User explicitly prioritizes fastest completion and workstreams are independent | Set `execution_mode: fast`; justify bounded parallel agents; avoid duplicate scans |
-| Research routing | User requests a scientific manuscript and figure | Consider only matching Nature Skills; do not load the whole collection; obtain authorization before installation |
-| Missing external skill | Grill Me is absent and installation is not authorized | Ask equivalent Chinese clarification questions; do not install or block planning |
+| Intensive clarification | Material planning decisions remain unresolved, or the user asks to be grilled | Read the dispatcher and Matt adapter; load `grill-me` plus `grilling`, ask the current decision frontier in Chinese, and do not install the upstream skill |
+| Engineering workflow | An approved coding project needs a spec, ticket map, TDD, diagnosis, implementation, architecture review, or handoff | Select only the matching Matt leaf and direct dependencies; keep root approval and Chinese-output rules authoritative |
+| Minimal coding | Approved scope includes code implementation | Load the Ponytail adapter and `skills/ponytail/SKILL.md` after tracing affected paths; prefer reuse and minimum sufficient code without weakening explicit or safety requirements |
+| Complexity review | User requests an over-engineering diff review, repository audit, or debt ledger | Select only `ponytail-review`, `ponytail-audit`, or `ponytail-debt`; preserve their read-only boundary unless fixes are separately approved |
+| Research routing | User requests scientific search, reading, writing, statistics, figures, review, data, patent, or slide work | Read the Nature adapter; load the smallest matching leaf set and direct dependencies; resolve `nature-shared` locally and do not install upstream skills |
+| Mixed module task | A project genuinely combines planning, coding, and scientific deliverables | Load multiple adapters only when each has a current role; record every leaf in the resource budget and avoid duplicate discovery |
+| Embedded executable | A selected leaf points to a script, hook, MCP service, browser, or dependency | Inspect it first; include needs and risks in the plan; never treat bundling as execution, installation, credentials, or side-effect authorization |
+| External extension | User requests host registration, an unavailable runtime/service, or a newer upstream revision | Explain the exact boundary and obtain current authorization; do not reinstall an already embedded skill |
 | Smoke pre-authorization | Approved plan explicitly authorizes one exact local smoke test | Run it only after structural review and only if test, environment, risk, and cost are unchanged; otherwise ask again |
 | Smoke drift | A pre-authorized command, environment, fixture, cost, or risk changed | Treat prior authorization as invalid and request exact permission again |
 | Smoke not authorized | Implementation is complete without test permission | Report the proposed test in Chinese and wait; never imply it ran |
@@ -34,3 +40,6 @@ Use these cases for forward-testing after material changes. Evaluate observable 
 - No user-facing English unless explicitly requested for a deliverable.
 - No material requirement lost or inverted during intake compilation.
 - No operational command, path, fixture, environment, or capability invented without project evidence.
+- No external skill installation for capabilities covered by the embedded snapshots.
+- No claim that a bundled hook, plugin, MCP server, dependency, browser, service, or script ran merely because its files are present.
+- Every selected embedded leaf and direct dependency is recorded; unrelated module trees are not loaded into context.
